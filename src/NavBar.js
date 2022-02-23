@@ -11,8 +11,8 @@ const NavBar = (props) => {
     return(
         <React.Fragment>
             <Link to="/"> Home </Link>
-            <Link to="/About"> About </Link>
-            <Link to="/Events"> Events </Link>
+            <Link to="/about"> About </Link>
+            <Link to="/events"> Events </Link>
             {!props.currentUser.loggedIn && <Link to="/SignUp"> Sign Up </Link>}
             {!props.currentUser.loggedIn && <Link to="/SignIn"> Sign In </Link>}
             {props.currentUser.loggedIn && <Link onClick={logOut} to="#"> Log Out </Link>}

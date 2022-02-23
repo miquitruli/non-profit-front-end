@@ -2,18 +2,36 @@ import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import {useParams} from 'react-router-dom';
 import UpdateEventForm from './UpdateEventForm';
+import { deleteEvent } from './redux/actions/eventActions';
+import Item from './Item';
+import CreateItemForm from './CreateItemForm';
 
 const EventShow = (props) => {
     const {id} = useParams() 
     const [showUpdateForm, setShowUpdateForm] = useState(false)
+    const [showCreateItemForm, setShowCreateItemForm] = useState(false)
     const event = props.events.find(event => event.id === parseInt(id))
+
+    const deleteEvent = () => {
+        props.deleteEvent(event)
+        .then(() => {
+            window.location = "/events"
+        })
+    }
     
     if (!event){
         return null
     }
-
+ 
     return(
         <React.Fragment>
+            {props.current_user?.user?.id === event.user_id && 
+                <React.Fragment>
+                    <p><button onClick={() => setShowUpdateForm(!showUpdateForm)}>Update Event</button>   
+                    <button onClick={deleteEvent}>Delete Event</button></p>
+                </React.Fragment>
+            }
+            
             {showUpdateForm && <UpdateEventForm event={event} setShowUpdateForm={setShowUpdateForm}/>}
             {!showUpdateForm && 
             <React.Fragment>
@@ -24,17 +42,32 @@ const EventShow = (props) => {
                 <p>{event.formatted_due_by}</p>
                 <p>{event.contact}</p>
                 <p><a href={event.website}>{event.website}</a></p>
+                {props.current_user?.user?.id === event.user_id &&
+                    <>
+                    <button onClick={() => setShowCreateItemForm(!showCreateItemForm)}>Add Item</button>
+                    {showCreateItemForm && <CreateItemForm event={event} setShowCreateItemForm={setShowCreateItemForm}/>}
+                    </>
+                }
+                <h2>Items:</h2>
+                {event.items.map(item => <Item item={item}/>)}
             </React.Fragment>}
-            <p><button onClick={() => setShowUpdateForm(!showUpdateForm)}>Update Event</button></p>   
+            
         </React.Fragment>
     )
 }
 
 const mapStateToProps = state => {
     return {
-        events: state.events.events
+        events: state.events.events,
+        current_user: state.user.user
     }
 }
 
-export default connect(mapStateToProps, null)(EventShow);
+const mapDispatchToProps = dispatch => {
+    return {
+        deleteEvent: event => dispatch(deleteEvent(event))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EventShow);
 

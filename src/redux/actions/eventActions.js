@@ -44,3 +44,38 @@ export const updateEvent = (event) => {
             dispatch({type: "UPDATE_EVENT", event: event})})
     }
 }
+
+export const deleteEvent = (event) => {
+    return dispatch => {
+        return fetch(`http://127.0.0.1:3000/events/${event.id}`, {
+            method: "DELETE",
+            headers: {
+                accept: "application/json",
+                "content-type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            },
+        })
+        .then(response => response.json())
+        .then(() => {
+            dispatch({type: "DELETE_EVENT", event: event})})
+    }
+}
+
+export const createItem = (item) => {
+    return dispatch => {
+        return fetch("http://127.0.0.1:3000/items", {
+            method: "POST",
+            headers: {
+                accept: "application/json",
+                "content-type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            },
+            body: JSON.stringify({
+                item: item
+            })
+        })
+        .then(response => response.json())
+        .then(item => {
+            dispatch({type: "ADD_ITEM", item: item})})
+    }
+}

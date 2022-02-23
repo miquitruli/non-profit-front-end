@@ -13,6 +13,14 @@ const eventsReducer = (state = { events: []}, action) => {
             return {
                 events: state.events.map(event => event.id === action.event.id ? action.event : event)
             }
+        case "DELETE_EVENT":
+            return {
+                events: state.events.filter(event => event.id !== action.event.id)
+            }
+        case "ADD_ITEM":
+            return {
+                events: state.events.map(event => event.id === action.item.event_id ? {...event, items: [...event.items, action.item]} : event)
+            }
         default:
             return state
     }
