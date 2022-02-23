@@ -9,10 +9,14 @@ import EventShow from './EventShow';
 import {fetchEvents} from './redux/actions/eventActions';
 import React from 'react';
 import {connect} from 'react-redux';
+import SignUp from './SignUp';
+import SignIn from './SignIn';
+import {authCheck} from './redux/actions/userAction';
 
 class App extends React.Component {
   componentDidMount() {
     this.props.fetchEvents()
+    this.props.authCheck()
   }
 
   render() {
@@ -25,6 +29,9 @@ class App extends React.Component {
                 <Route exact path="/about" component={About} />
                 <Route exact path="/events" component={Events} />
                 <Route path="/events/:id" component={EventShow} />
+                <Route exact path="/signup" component={SignUp} />
+                <Route exact path="/signin" component={SignIn} />
+
             </Switch>
         </div>
       </Router>
@@ -35,7 +42,8 @@ class App extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return{
-    fetchEvents: () => dispatch(fetchEvents())
+    fetchEvents: () => dispatch(fetchEvents()),
+    authCheck: () => dispatch(authCheck())
   }
 }
 
