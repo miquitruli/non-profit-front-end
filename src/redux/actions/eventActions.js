@@ -79,3 +79,41 @@ export const createItem = (item) => {
             dispatch({type: "ADD_ITEM", item: item})})
     }
 }
+
+export const deleteItem = (item) => {
+    return dispatch => {
+        return fetch(`http://127.0.0.1:3000/items/${item.id}`, {
+            method: "DELETE",
+            headers: {
+                accept: "application/json",
+                "content-type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            },
+        })
+        .then(response => response.json())
+        .then(() => {
+            dispatch({type: "DELETE_ITEM", item: item})})
+    }
+}
+
+export const createUserItems = (items, event_id) => {
+    return dispatch => {
+        return fetch("http://127.0.0.1:3000/user_items", {
+            method: "POST",
+            headers: {
+                accept: "application/json",
+                "content-type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            },
+            body: JSON.stringify({
+                user_item: {
+                    event_id: event_id,
+                    items: items
+                }
+            })
+        })
+        .then(response => response.json())
+        .then(event => {
+            dispatch({type: "UPDATE_EVENT", event: event})})
+    }
+}

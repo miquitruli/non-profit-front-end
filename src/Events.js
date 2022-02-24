@@ -6,6 +6,7 @@ import CreateEventForm from './CreateEventForm';
 
 const Events = (props) => {
     const [createEventForm, setCreateEventForm] = useState(false)
+    
     return(
         <React.Fragment>
             

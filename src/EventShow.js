@@ -2,16 +2,25 @@ import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import {useParams} from 'react-router-dom';
 import UpdateEventForm from './UpdateEventForm';
-import { deleteEvent } from './redux/actions/eventActions';
+import { deleteEvent, createUserItems } from './redux/actions/eventActions';
 import Item from './Item';
 import CreateItemForm from './CreateItemForm';
+
 
 const EventShow = (props) => {
     const {id} = useParams() 
     const [showUpdateForm, setShowUpdateForm] = useState(false)
     const [showCreateItemForm, setShowCreateItemForm] = useState(false)
     const event = props.events.find(event => event.id === parseInt(id))
+    const [itemCommitQuantity, setItemCommitQuantity] = useState([])
 
+    const commit = () => {
+        props.createUserItems(itemCommitQuantity, event.id)
+        .then(() => {
+            window.location = `/events/${event.id}`  
+        })
+    }
+    
     const deleteEvent = () => {
         props.deleteEvent(event)
         .then(() => {
@@ -22,7 +31,7 @@ const EventShow = (props) => {
     if (!event){
         return null
     }
- 
+    
     return(
         <React.Fragment>
             {props.current_user?.user?.id === event.user_id && 
@@ -49,7 +58,8 @@ const EventShow = (props) => {
                     </>
                 }
                 <h2>Items:</h2>
-                {event.items.map(item => <Item item={item}/>)}
+                {event.items.map(item => <Item itemCommitQuantity={itemCommitQuantity} setItemCommitQuantity={setItemCommitQuantity} key={item.id} item={item}/>)}
+                <button onClick={commit}>Commit</button>
             </React.Fragment>}
             
         </React.Fragment>
@@ -65,7 +75,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        deleteEvent: event => dispatch(deleteEvent(event))
+        deleteEvent: event => dispatch(deleteEvent(event)),
+        createUserItems: (items, event_id) => dispatch(createUserItems(items, event_id))
     }
 }
 
