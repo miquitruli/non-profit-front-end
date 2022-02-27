@@ -36,7 +36,7 @@ const EventShow = (props) => {
         <React.Fragment>
             {props.current_user?.user?.id === event.user_id && 
                 <React.Fragment>
-                    <p><button onClick={() => setShowUpdateForm(!showUpdateForm)}>Update Event</button>   
+                    <p><button onClick={() => setShowUpdateForm(!showUpdateForm)}>Update Event</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <button onClick={deleteEvent}>Delete Event</button></p>
                 </React.Fragment>
             }
@@ -49,7 +49,7 @@ const EventShow = (props) => {
                 <p>Address: {event.address}</p>
                 <p>Description: {event.description}</p>
                 <p>{event.formatted_due_by}</p>
-                <p>{event.contact}</p>
+                <p>Contact: <a href={`tel:${event.contact}`}>{event.contact}</a></p>
                 <p><a href={event.website}>{event.website}</a></p>
                 {props.current_user?.user?.id === event.user_id &&
                     <>

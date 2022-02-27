@@ -34,21 +34,21 @@ class UpdateEventForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}> 
-                <label>Name:</label>
+                <p class="p3">&nbsp;&nbsp;&nbsp;<label>Name:</label>&nbsp;&nbsp;&nbsp;
                 <input onChange={this.handleChange} type="text" name="name" value={this.state.name}></input>
-                <label>Description</label>
+                <label>&nbsp;&nbsp;&nbsp;Description:&nbsp;&nbsp;&nbsp;</label>
                 <textarea onChange={this.handleChange} name="description" value={this.state.description}></textarea>
-                <label>Address:</label>
+                <p class="p3"></p><label>&nbsp;&nbsp;&nbsp;Address:&nbsp;&nbsp;&nbsp;</label>
                 <textarea onChange={this.handleChange} name="address" value={this.state.address}></textarea>
-                <label>Due Date:</label>
+                <label>&nbsp;&nbsp;&nbsp;Due Date:&nbsp;&nbsp;&nbsp;</label>
                 <input onChange={this.handleChange} type="date" name="due_by" value={this.state.due_by}></input>
-                <label>Phone:</label>
+                <p class="p3"></p><label>&nbsp;&nbsp;&nbsp;Phone:&nbsp;&nbsp;&nbsp;</label>
                 <input onChange={this.handleChange} type="text" name="contact" value={this.state.contact}></input>
-                <label>Website:</label>
+                <label>&nbsp;&nbsp;&nbsp;Website:&nbsp;&nbsp;&nbsp;</label>
                 <input onChange={this.handleChange} type="text" name="website" value={this.state.website}></input>
-                
+                &nbsp;&nbsp;&nbsp;
 
-                <input type="submit" value="Save"/>
+                <p class="p3"></p><input id="update" type="submit" value="Save"/></p>
             </form>  
         )
     }

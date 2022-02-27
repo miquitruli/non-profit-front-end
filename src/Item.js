@@ -20,13 +20,13 @@ const Item = (props) => {
 
     return (
         <React.Fragment>
-            <p>{props.item.name}  
-            &nbsp; Quantity Needed: {props.item.quantity_remaining} &nbsp; Commit to:
-            <input onChange={handleChange} type="number" value={commitQuantity} min={0} max={props.quantity_remaining}></input>
-            </p> 
+            <p><strong>Item Needed:</strong> {props.item.name}&nbsp;&nbsp;  
+            <strong>&nbsp;&nbsp; Quantity Needed:</strong> {props.item.quantity_remaining} &nbsp;&nbsp; 
+            <strong>Commit to:&nbsp;&nbsp; </strong><input id="input1" onChange={handleChange} type="number" value={commitQuantity} min={0} max={props.quantity_remaining}></input>
+            &nbsp;&nbsp;&nbsp;&nbsp;
              
             {props.current_user?.user?.id === props.item.user_id &&
-            <button onClick={handleDelete}>Delete</button> }
+            <button onClick={handleDelete}>Delete</button> }</p>
         </React.Fragment>
     )
 }

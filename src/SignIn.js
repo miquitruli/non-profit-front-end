@@ -30,13 +30,14 @@ class SignIn extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}> 
-                <label>Email:</label>
+            <form id="signin" onSubmit={this.handleSubmit}> 
+                <label>Email:&nbsp;&nbsp;</label>
                 <input onChange={this.handleChange} type="email" name="email"></input>
-                <label>Password:</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <label>Password:&nbsp;&nbsp;</label>
                 <input onChange={this.handleChange} type="password" name="password"></input>
 
-                <input type="submit" value="Sign-In"/>
+                &nbsp;&nbsp;<input id="submitbutton" type="submit" value="Sign-In"/>
             </form>  
         )
     }

@@ -32,17 +32,17 @@ class SignUp extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}> 
-                <label>Name:</label>
-                <input onChange={this.handleChange} type="text" name="name"></input>
-                <label>Email:</label>
-                <input onChange={this.handleChange} type="email" name="email"></input>
-                <label>Password:</label>
-                <input onChange={this.handleChange} type="password" name="password"></input>
-                <label>Password Confirmation:</label>
-                <input onChange={this.handleChange} type="password" name="password_confirmation"></input>
-
-                <input type="submit" value="Sign-Up"/>
+            <form id="signup" onSubmit={this.handleSubmit}> 
+                <p class="p3"><label>Name:&nbsp;&nbsp;</label>
+                <input onChange={this.handleChange} type="text" name="name"></input></p>
+                <p class="p3">&nbsp;&nbsp;<label>Email:&nbsp;&nbsp;</label>
+                <input onChange={this.handleChange} type="email" name="email"></input></p>
+                <p class="p3">&nbsp;&nbsp;<label>Password:&nbsp;&nbsp;</label>
+                <input onChange={this.handleChange} type="password" name="password"></input></p>
+                <p class="p3">&nbsp;&nbsp;<label>Password Confirmation:&nbsp;&nbsp;</label>
+                <input onChange={this.handleChange} type="password" name="password_confirmation"></input></p>
+                &nbsp;&nbsp;
+                <p class="p3"><input id="submitsignup" type="submit" value="Sign-Up"/></p>
             </form>  
         )
     }

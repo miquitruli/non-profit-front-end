@@ -10,7 +10,7 @@ const Events = (props) => {
     return(
         <React.Fragment>
             
-            <p><button onClick={() => setCreateEventForm(!createEventForm)}>Create Event</button></p>
+            <p><button id= "create" onClick={() => setCreateEventForm(!createEventForm)}>Create Event</button></p>
             {createEventForm && <CreateEventForm />}
             <h1>Your Events:</h1>
                 {props.events.filter(event => event.user_id === props.current_user?.user?.id).map(event => <Event event={event} key={event.id}/>)}
