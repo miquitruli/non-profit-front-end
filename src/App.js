@@ -12,6 +12,7 @@ import {connect} from 'react-redux';
 import SignUp from './SignUp';
 import SignIn from './SignIn';
 import {authCheck} from './redux/actions/userAction';
+import Faqs from './Faqs';
 
 class App extends React.Component {
   componentDidMount() {
@@ -31,7 +32,7 @@ class App extends React.Component {
                 <Route path="/events/:id" component={EventShow} />
                 <Route exact path="/signup" component={SignUp} />
                 <Route exact path="/signin" component={SignIn} />
-
+                <Route exact path="/faqs" component={Faqs} />
             </Switch>
         </div>
       </Router>

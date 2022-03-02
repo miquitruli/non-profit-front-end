@@ -26,6 +26,10 @@ div#home {
   margin-bottom: 3em;
 }
 
+a:focus {
+  color: #000000;
+}
+
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;
